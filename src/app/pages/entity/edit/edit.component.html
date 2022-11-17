@@ -1,3 +1,50 @@
 <div class="component">
   <p>edit works!</p>
 </div>
+
+<div *ngIf="componentExists">
+  <h1>Editing component {{componentId}}</h1>
+</div>
+<div *ngIf="!componentExists">
+  <h1>Creating new User</h1>
+</div>
+
+<form #userEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-row">
+    <div class="form-group col-sm-12 col-lg-4">
+      <label for="firstname">Username</label>
+      <!-- <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstName" #firstname="ngModel"
+        minlength="3" required [ngClass]="{" is-invalid": firstname.invalid}" /> -->
+    </div>
+
+    <!-- <div *ngIf="firstname.invalid && firstname.touched" class="invalid-feedback">
+      <div *ngIf="firstname.errors!["required"]">Firstname is required</div>
+      <div *ngIf="firstname.errors!["minlength"]">Firstname must be 3 chars long.</div>
+    </div> -->
+
+
+    <!-- Lastname: -->
+    <div class="form-group col-sm-12 col-lg-4">
+      <label for="Lastname">Last name</label>
+      <!-- <input type="text" name="Lastname" class="form-control" [(ngModel)]="user.Lastname" #Lastname="ngModel"
+        minlength="3" required [ngClass]="{" is-invalid": Lastname.invalid}" /> -->
+    </div>
+
+    <!-- <div *ngIf="Lastname.invalid && Lastname.touched" class="invalid-feedback">
+      <div *ngIf="Lastname.errors!["required"]">Lastname is required</div>
+      <div *ngIf="Lastname.errors!["minlength"]">Lastname must be 3 chars long.</div>
+    </div> -->
+
+  </div>
+
+  <div class="row">
+    <div class="col text-end">
+      <button type="submit" class="btn btn-primary" routerLink="edit" [disabled]="!userEditForm.valid">Submit</button>
+      <button type="button" class="btn btn-warning mx-2" routerLink="..">Cancel</button>
+    </div>
+  </div>
+</form>
+
+<pre>
+  <!-- {{ user | json }} -->
+</pre>

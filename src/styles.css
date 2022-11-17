@@ -5,3 +5,14 @@
   padding: 10px;
   min-height: 100px;
 }
+
+.nav-link {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+/* .nav-link:visited, */
+
+a:hover {
+  opacity: 0.89;
+}
