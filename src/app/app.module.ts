@@ -5,12 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './shared/nav/nav.component';
-import { AComponent } from './pages/a/a.component';
-import { BComponent } from './pages/b/b.component';
-import { EntityComponent } from './pages/entity/entity.component';
-import { ListComponent } from './pages/entity/list/list.component';
-import { DetailComponent } from './pages/entity/detail/detail.component';
-import { EditComponent } from './pages/entity/edit/edit.component';
+import { MealComponent } from './pages/meal/meal.component';
+import { AboutComponent } from './pages/about/about.component';
+import { UserComponent } from './pages/user/user.component';
+import { ListComponent } from './pages/user/list/list.component';
+import { DetailComponent } from './pages/user/detail/detail.component';
+import { EditComponent } from './pages/user/edit/edit.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -21,9 +21,9 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     NavComponent,
-    AComponent,
-    BComponent,
-    EntityComponent,
+    MealComponent,
+    AboutComponent,
+    UserComponent,
     ListComponent,
     DetailComponent,
     EditComponent,

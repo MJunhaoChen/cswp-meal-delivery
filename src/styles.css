@@ -38,6 +38,14 @@ p {
   max-width: 80%;
 }
 
+.fa-lg {
+  margin-bottom: 30px;
+}
+
+.form-control {
+  margin-left: -10px;
+}
+
 .card {
   all: unset;
   border-radius: 4px;
@@ -117,12 +125,28 @@ a:hover {
   opacity: 0.89;
 }
 
+.move30down {
+  margin-top: 30px;
+}
+
 .move40down {
   margin-top: 40px;
 }
 
+.move70down {
+  margin-top: 70px;
+}
+
+.move150down {
+  margin-top: 150px;
+}
+
 .move100right {
   margin-left: 100px;
+}
+
+.width77 {
+  max-width: 77%;
 }
 
 .bg-main {
