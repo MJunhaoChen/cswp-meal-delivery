@@ -1,0 +1,20 @@
+.profile-pic {
+  width: 90px;
+  margin-right: -20px;
+}
+
+.pfp {
+  margin-top: 50px;
+  margin-left: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(130, 130, 169, 0.9514356084230567) 0%,
+    rgba(199, 81, 66, 0.9562255243894433) 50%,
+    rgba(130, 130, 169, 0.9562255243894433) 100%
+  ) !important;
+  padding: 30px 80px;
+}
+
+ul {
+  color: #fff;
+}

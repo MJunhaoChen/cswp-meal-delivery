@@ -13,18 +13,16 @@ h6 {
   color: #fff;
 }
 
+p,
+label,
+th,
+td,
+pre {
+  color: #fff;
+}
+
 p {
   margin: 0;
-}
-
-.underline {
-  color: #f5f5dc;
-  text-decoration: underline;
-}
-
-.underline:hover {
-  color: #f5f5dc;
-  opacity: 0.89;
 }
 
 .card-container {
@@ -32,6 +30,14 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 16px;
+}
+
+.max-width77 {
+  max-width: 77%;
+}
+
+.container {
+  max-width: 900px;
 }
 
 .container-fluid {
@@ -108,21 +114,21 @@ p {
   position: relative;
 }
 
-a,
-a:visited {
-  color: #fff;
+a {
+  color: #f5f5dc;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+a:hover,
+a:visited:hover {
+  color: #f5f5dc;
   text-decoration: none;
+  opacity: 0.69;
 }
 
-p,
-label,
-th,
-td {
-  color: #fff;
-}
-
-a:hover {
-  opacity: 0.89;
+.move5down {
+  margin-top: 5px;
 }
 
 .move30down {
@@ -145,12 +151,20 @@ a:hover {
   margin-left: 100px;
 }
 
-.width77 {
-  max-width: 77%;
-}
-
 .bg-main {
   background-color: #940020;
+}
+
+.invalid-feedback {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 191, 187, 1) 0%,
+    rgba(213, 203, 201, 1) 50%,
+    rgba(233, 144, 132, 0.465721322708771) 100%
+  );
+  border-radius: 10px;
+  padding: 3px;
+  margin-left: -10px;
 }
 
 .cardBorder {

@@ -15,12 +15,6 @@
   padding: 30px 80px;
 }
 
-a {
-  color: #f5f5dc;
-  text-decoration: underline;
-  font-weight: 600;
-}
-
 ul {
   color: #fff;
 }
@@ -31,6 +25,6 @@ ul {
   margin-bottom: 12px;
 }
 
-.minHe{
-  min-height: 700px;
+.minHe {
+  min-height: 800px;
 }

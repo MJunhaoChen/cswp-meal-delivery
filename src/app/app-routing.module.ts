@@ -7,21 +7,19 @@ import { AboutComponent } from './pages/about/about.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DetailComponent } from './pages/user/detail/detail.component';
 import { EditComponent } from './pages/user/edit/edit.component';
-import { UserComponent } from './pages/user/user.component';
+import { ListComponent } from './pages/user/list/list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', pathMatch: 'full', component: DashboardComponent },
   { path: 'meals', pathMatch: 'full', component: MealComponent },
   { path: 'about-us', pathMatch: 'full', component: AboutComponent },
-  {
-    path: 'users',
-    component: UserComponent,
-    children: [
-      { path: ':id', pathMatch: 'full', component: DetailComponent },
-      { path: ':id/edit', pathMatch: 'full', component: EditComponent },
-    ],
-  },
+
+  { path: 'user', pathMatch: 'full', component: ListComponent },
+  { path: 'user/new', pathMatch: 'full', component: EditComponent },
+  { path: 'user/:id', pathMatch: 'full', component: DetailComponent },
+  { path: 'user/:id/edit', pathMatch: 'full', component: EditComponent },
+
   { path: 'register', pathMatch: 'full', component: RegisterComponent },
   { path: 'login', pathMatch: 'full', component: LoginComponent },
   { path: '**', redirectTo: 'dashboard' },

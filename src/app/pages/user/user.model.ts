@@ -4,9 +4,6 @@ export class User {
   lastName: string | undefined;
   emailAddress: string | undefined;
   birthDate: Date | undefined;
-
-  constructor(id: string, firstName: string) {
-    this.id = id;
-    // Verder aanvullen
-  }
+  isGraduated: boolean | undefined;
+  phoneNumber: string | undefined;
 }

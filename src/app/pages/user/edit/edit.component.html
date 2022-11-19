@@ -1,50 +1,68 @@
-<div class="container-fluid move100right">
-  <p>edit works!</p>
-</div>
-
-<div *ngIf="componentExists">
-  <h1>Editing component {{componentId}}</h1>
-</div>
-<div *ngIf="!componentExists">
-  <h1>Creating new User</h1>
-</div>
-
-<form #userEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
-  <div class="form-row">
-    <div class="form-group col-sm-12 col-lg-4">
-      <label for="firstname">Username</label>
-      <!-- <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstName" #firstname="ngModel"
-        minlength="3" required [ngClass]="{" is-invalid": firstname.invalid}" /> -->
-    </div>
-
-    <!-- <div *ngIf="firstname.invalid && firstname.touched" class="invalid-feedback">
-      <div *ngIf="firstname.errors!["required"]">Firstname is required</div>
-      <div *ngIf="firstname.errors!["minlength"]">Firstname must be 3 chars long.</div>
-    </div> -->
-
-
-    <!-- Lastname: -->
-    <div class="form-group col-sm-12 col-lg-4">
-      <label for="Lastname">Last name</label>
-      <!-- <input type="text" name="Lastname" class="form-control" [(ngModel)]="user.Lastname" #Lastname="ngModel"
-        minlength="3" required [ngClass]="{" is-invalid": Lastname.invalid}" /> -->
-    </div>
-
-    <!-- <div *ngIf="Lastname.invalid && Lastname.touched" class="invalid-feedback">
-      <div *ngIf="Lastname.errors!["required"]">Lastname is required</div>
-      <div *ngIf="Lastname.errors!["minlength"]">Lastname must be 3 chars long.</div>
-    </div> -->
-
+<div class="container-fluid move100right move30down">
+  <div *ngIf="componentExists && user">
+    <h3>Bewerken van {{ userName }}</h3>
   </div>
-
-  <div class="row">
-    <div class="col text-end">
-      <button type="submit" class="btn btn-primary" routerLink="edit" [disabled]="!userEditForm.valid">Submit</button>
-      <button type="button" class="btn btn-warning mx-2" routerLink="..">Cancel</button>
-    </div>
+  <div *ngIf="!componentExists">
+    <h3>Nieuwe gebruiker toevoegen</h3>
   </div>
-</form>
+  <div class="max-width77">
 
-<pre>
-  <!-- {{ user | json }} -->
+
+    <!-- Edit form voor user model -->
+
+    <form #userEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <div class="col-5">
+          <!-- firstname -->
+          <div class="form-group">
+            <label for="firstname">Voornaam</label>
+            <input type="text" name="firstname" class="form-control" [(ngModel)]="user!.firstName" #firstname="ngModel"
+              minlength="3" required [ngClass]="{
+                        'is-invalid': firstname.invalid && firstname.touched
+                    }" />
+            <div *ngIf="firstname.invalid && firstname.touched" class="invalid-feedback">
+              <div *ngIf="firstname.errors!['required']">
+                Voornaam is verplicht
+              </div>
+              <div *ngIf="firstname.errors!['minlength']">
+                De voornaam moet 3 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">
+          <!-- lastname -->
+          <div class="form-group">
+            <label for="lastname">Achternaam</label>
+            <input type="text" name="lastname" class="form-control" [(ngModel)]="user!.lastName" #lastname="ngModel"
+              minlength="3" required [ngClass]="{
+                        'is-invalid': lastname.invalid && lastname.touched
+                    }" />
+            <div *ngIf="lastname.invalid && lastname.touched" class="invalid-feedback">
+              <div *ngIf="lastname.errors!['required']">
+                Achternaam is verplicht
+              </div>
+              <div *ngIf="lastname.errors!['minlength']">
+                De achternaam moet 3 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit en Cancel buttons -->
+      <div class="row py-3">
+        <div class="col">
+          <button type="submit" class="btn btn-primary mx-2" [disabled]="!userEditForm.valid">
+            Submit
+          </button>
+          <button class="btn btn-warning mx-2" routerLink="..">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+    <pre>{{ user | json }}
 </pre>
+
+  </div>
+</div>

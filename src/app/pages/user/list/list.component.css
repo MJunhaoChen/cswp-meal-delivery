@@ -1,4 +1,7 @@
-.table a {
-  color: #f5f5dc;
-  text-decoration: underline;
+.move100right {
+  margin-left: 100px;
+}
+
+.minWi103 {
+  min-width: 103%;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { userInfo } from 'os';
-// import {User, Gender} from '../meals.model';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,58 +11,49 @@ import { userInfo } from 'os';
 export class EditComponent implements OnInit {
   componentId: string | null | undefined;
   componentExists: boolean = false;
-  // user: User | undefined;
-  // HIJ HEEFT HIER ZOVEEL DINGEN WTF
-  // moet ook models ergens halen
+  user: User | undefined;
+  userName: string | undefined;
 
-  // meals.service.ts ergens vandaan halen
-  // constructor() {private route: ActivatedRoute, private router: Router, private userService: ComponentAService}
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    console.log('Edit component ingeladen');
-
-    // this.route.paramMap.subscribe(params)=>{
-    //   this.componentId = params.get("id");
-    //   if(this.componentId){
-    //     this.componentExists = true;
-    //   }else{
-    //     console.log("Nieuwe component");
-    //     this.componentExists = false;
-
-    //     this.user = {
-    //       firstName: "",
-    //       lastName: "",
-    //       emailAddress: "",
-    //       birthDate: new Date(),
-    //       // gender: Gender.unknown
-    //     }
-    // }
+    this.route.paramMap.subscribe((params) => {
+      this.componentId = params.get('id');
+      if (this.componentId) {
+        console.log('Bestaande component');
+        this.componentExists = true;
+        this.user = {
+          ...this.userService.getUserById(this.componentId),
+        };
+        this.userName = this.user.firstName + ' ' + this.user.lastName;
+      } else {
+        console.log('Nieuwe component');
+        this.componentExists = false;
+        this.user = {
+          id: undefined,
+          firstName: '',
+          lastName: '',
+          emailAddress: '',
+          birthDate: new Date(),
+          isGraduated: false,
+          phoneNumber: '',
+        };
+      }
+    });
   }
 
   onSubmit() {
-    console.log('Submitting the form.');
-    // // User toevoegen aan UserArray.
-    // if (this.componentExists) {
-    //   // Update bestaande entry in arraylist
-    //   this.userService.updateUser(this.user);
-    // } else {
-    //   // Create new entry
-    //   this.userService.addUser(this.user);
-    //   this.router.navigate(['..']);
-    // }
+    console.log('Submitting the form');
+    if (this.componentExists) {
+      this.userService.updateUser(this.user!);
+      this.router.navigate(['user']);
+    } else {
+      this.userService.addUser(this.user!);
+      this.router.navigate(['user']);
+    }
   }
-
-  // // SERVICE A COMPONENT:::::
-  // getAllUsers() User[]{
-  //   return this.users;
-  // }
-
-  // getUserById(id: string): User{
-  //   return this.users.filter((user: User))=> userInfo.id === id[0];
-  // }
-
-  // addUser(user: User){
-
-  // }
 }
