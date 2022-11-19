@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { userInfo } from 'os';
-// import {User, Gender} from '../component-a.model';
+// import {User, Gender} from '../meals.model';
 
 @Component({
   selector: 'app-edit',
@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
   // HIJ HEEFT HIER ZOVEEL DINGEN WTF
   // moet ook models ergens halen
 
-  // component-a.service.ts ergens vandaan halen
+  // meals.service.ts ergens vandaan halen
   // constructor() {private route: ActivatedRoute, private router: Router, private userService: ComponentAService}
   constructor() {}
 
