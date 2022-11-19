@@ -1,18 +1,158 @@
-/* You can add global styles to this file, and also import other style files */
-.component {
-  border: solid green;
-  margin: 5px;
-  padding: 10px;
-  min-height: 100px;
-}
-
 .nav-link {
   color: #fff !important;
   text-decoration: none;
 }
 
-/* .nav-link:visited, */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+  color: #fff;
+}
+
+p {
+  margin: 0;
+}
+
+.underline {
+  color: #f5f5dc;
+  text-decoration: underline;
+}
+
+.underline:hover {
+  color: #f5f5dc;
+  opacity: 0.89;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.container-fluid {
+  max-width: 80%;
+}
+
+.card {
+  all: unset;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background: linear-gradient(
+    90deg,
+    rgba(130, 130, 169, 0.32) 0%,
+    rgba(207, 53, 33, 0.07636558041185226) 50%,
+    rgba(130, 130, 169, 0.3228641798516282) 100%
+  );
+  color: #fff;
+  width: 200px;
+  margin: 0 8px 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+}
+
+.card-container .card:not(:last-child) {
+  margin-right: 0;
+}
+
+.card.card-small {
+  height: 16px;
+  width: 168px;
+}
+
+.card-container .card:not(.highlight-card) {
+  cursor: pointer;
+}
+
+.card-container .card:not(.highlight-card):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.card-container .card:not(.highlight-card):hover .material-icons path {
+  fill: rgb(105, 103, 103);
+}
+
+.card.highlight-card {
+  background: linear-gradient(
+    90deg,
+    rgba(130, 130, 169, 0.7514356084230567) 0%,
+    rgba(199, 81, 66, 0.7262255243894433) 50%,
+    rgba(130, 130, 169, 1) 100%
+  );
+  color: #fff;
+  padding: 20px;
+  margin-top: 25px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  border: none;
+  width: auto;
+  min-width: 30%;
+  position: relative;
+}
+
+a,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+p,
+label,
+th,
+td {
+  color: #fff;
+}
 
 a:hover {
   opacity: 0.89;
+}
+
+.move40down {
+  margin-top: 40px;
+}
+
+.move100right {
+  margin-left: 100px;
+}
+
+.bg-main {
+  background-color: #940020;
+}
+
+.cardBorder {
+  border-radius: 25px;
+  border: 1px solid #eee;
+  background: linear-gradient(
+    90deg,
+    rgba(130, 130, 169, 0.32) 0%,
+    rgba(207, 53, 33, 0.07636558041185226) 50%,
+    rgba(130, 130, 169, 0.3228641798516282) 100%
+  );
+  color: #fff;
+  width: 750px;
+  display: flex;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .card-container > *:not(.circle-link),
+  .card:not(.highlight-card) {
+    height: 16px;
+    margin: 8px 0;
+  }
+
+  .card.highlight-card span {
+    margin-left: 72px;
+  }
 }
