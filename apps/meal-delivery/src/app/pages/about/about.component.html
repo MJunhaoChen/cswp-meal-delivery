@@ -1,0 +1,195 @@
+<div class="row">
+  <div class="col-sm-6 col-md-8 col-lg-9">
+    <h3 id="aboutTitle">Over deze applicatie</h3>
+    <p>
+      Deze applicatie is gemaakt in het kader van het vak 'Clientside web frameworks' van Avans Hogeschool Breda.
+    </p>
+
+    <h1>Gouden maaltijden</h1>
+    <p>
+      In dit project wordt een full stack single page webapplicatie (SPA) gemaakt die een informatiesysteem biedt met
+      betrekking tot een zelfgekozen domein. De applicatie biedt een SPA frontend met web-based user-interface, die
+      gebruik maakt van de API van een backend server. De backend server maakt gebruik van de data afkomstig uit NoSql
+      databases.
+    </p><br>
+    <p>
+      Er wordt in dit project gebruik gemaakt van Angular en de backend maakt gebruik van het NestJs framework.
+      Zowel de frontend als de backend zijn ontwikkeld binnen een Nx monorepo structuur.
+    </p><br>
+    <p>
+      De applicatie is gedeployed op <span><a
+          href="https://meal-delivery.netlify.app/dashboard">meal-delivery.netlify.app</a></span>,
+      en alle data in het systeem is geheel online toegankelijk via de user-interface en via de API. Je werkt in een
+      CI/CD-ontwikkelstraat, en zowel je client-side frontend applicatie als de backend zijn voldoende getest door
+      middel van testcases.
+    </p><br>
+    <p>
+      Dit is een site waar studenten zich kunnen aanmelden voor maaltijden uit een studentenhuis. Als entiteiten heb je:
+    </p>
+    <ul>
+      <li>Studentenhuis</li>
+      <li>Student</li>
+      <li>Eigenaar</li>
+      <li>Maaltijd</li>
+      <li>Product</li>
+    </ul>
+    <p>
+      De applicatie biedt CRUD-functionaliteit op het domein van dit project. Je kan dus voor de entiteiten uit het
+      domein creëren, inzien, wijzigen en verwijderen (CRUD),
+    </p>
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="card pfp">
+      <div class="d-flex justify-content-center align-items-center px-3 py-3">
+        <img src="assets/img/person.png" class="rounded-circle border profile-pic px-4 py-4" alt="pfp" />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Junhao Chen</h5>
+        <p class="card-text">Studentnummer: 2189845</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="move30down max-width77">
+  <h3>Entiteiten</h3>
+  <p>De entiteiten zijn: Studentenhuis, Student, Eigenaar, Maaltijd en Product. </p><br>
+  <p>Hoe het werkt, is dat je bijvoorbeeld kijkt (Zie afbeelding hieronder) naar Student en Maaltijd, je ziet dan
+    dat een student één of meerdere maaltijden kan kopen. Ze zijn verbonden door een pijl, de binnenste (tussen twee
+    entiteiten) met een cirkel of een streep wordt modaliteit genoemd, en de buitenste (tussen twee entiteiten) met
+    meerdere streepjes of één streep wordt kardinaliteit genoemd.
+  </p><br>
+  <p>Voor de binnenste:
+    Een cirkel betekent dat het niet verplicht is. Een streepje betekent dat je tenminste één moet hebben. Dus een
+    Maaltijd heeft tenminste één Studentenhuis en een Studentenhuis hoeft niet persé een Maaltijd hebben om een
+    Studentenhuis te zijn.
+  </p><br>
+  <p>Voor de buitenste:
+    Drie streepjes betekent dat het één of meer is. Één streepje betekent dat je maximaal één kan hebben. Dus een
+    Eigenaar kunt meerdere Maaltijden hebben en een Maaltijd heeft maar één Eigenaar.
+  </p><br>
+
+  <img src="assets/img/erd.png" class="img-fluid erd" alt="ERD" />
+
+  <div class="row move30down">
+    <div class="col-sm-12 col-md-4">
+      <p>Studentenhuis</p>
+      <ul>
+        <li>StraatEnHuisnummer: string</li>
+        <li>Stad: string</li>
+        <li>Postcode: string</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <p>Student</p>
+      <ul>
+        <li>Email: string</li>
+        <li>Naam: string</li>
+        <li>IsAfgestudeerd: boolean</li>
+        <li>Rol: enum</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <p>Eigenaar</p>
+      <ul>
+        <li>Email: string</li>
+        <li>Naam: string</li>
+        <li>IsAfgestudeerd: boolean</li>
+        <li>Rol: enum</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <p>Maaltijd</p>
+      <ul>
+        <li>Naam: string</li>
+        <li>Prijs: number</li>
+        <li>Ophaaltijd: date</li>
+        <li>Datum: date</li>
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <p>Product</p>
+      <ul>
+        <li>naam: string</li>
+        <li>Allergieën: string</li>
+        <li>BevatAlcohol: boolean</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row minHe50">
+    <div class="col">
+      <h3>Userstories</h3>
+      <p> Hier zijn de functionaliteiten van deze applicatie.</p>
+
+      <table class="table table-bordered table-dark">
+        <thead>
+          <th>Nr</th>
+          <th class="col-6">Userstory</th>
+          <th>Evt toelichting</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              Als student wil ik de maaltijden kunnen inzien.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              Als student wil ik een maaltijd kunnen reserveren.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              Als student wil ik een maaltijd kunnen annuleren.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              Als student wil ik de gereserveerde maaltijden kunnen inzien.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              Als eigenaar wil ik een maaltijd kunnen aanmaken.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>
+              Als eigenaar wil ik een maaltijd kunnen wijzigen.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>
+              Als eigenaar wil ik een maaltijd kunnen verwijderen.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>
+              Als beheerder wil ik overal bij kunnen.
+            </td>
+            <td>Overzicht is een grid.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row container list">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="card-title">Bestelde Maaltijden lijst</h3>
+    <div>
+      <button type="button" class="btn btn-primary move5down" routerLink="/meal">Nieuwe maaltijd toevoegen</button>
+    </div>
+  </div>
+  <div *ngIf="user?.meals?.length <= 0" class="row">
+    <p>Er zijn geen maaltijden gereserveerd.</p>
+  </div>
+  <div class="row container">
+    <div class="col">
+      <br>
+      <div class="mb240">
+        <div class="row">
+          <div class="col-sm-12 col-md-auto col-lg-6" *ngFor="let meal of user?.meals; let i = index">
+            <div *ngIf="isStudent || isAdmin || meal.ownerRef.id == currentUserId" class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{meal.name}}</h5>
+                <ul class="no-bullets">
+                  <li>Eigenaar: {{meal.ownerRef.username}}</li>
+                  <li *ngIf="meal.deliveryTime">Ophaaltijd: {{meal.deliveryTime | date:"HH:mm"}}</li>
+                  <li *ngIf="meal.deliveryDate">Ophaaldatum: {{meal.deliveryDate | date: "dd-MM-YYYY"}}</li>
+                  <li><a [routerLink]="['/meal', meal.id]" routerLinkActive="active" ariaCurrentWhenActive="page">Klik
+                      hier voor meer details.</a></li>
+                </ul>
+                <div class="alignEnd" *ngIf="isStudent">
+                  <a class="delete" title="Bestelling annuleren" data-toggle="tooltip" (click)="cancelOrder(meal.id!)"
+                    routerLinkActive="active"><i class="material-icons">cancel</i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

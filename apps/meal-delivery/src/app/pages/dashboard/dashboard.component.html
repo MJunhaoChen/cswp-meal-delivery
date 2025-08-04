@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <div class="card highlight-card card-small">
+    <h3>Welkom bij Gouden maaltijden</h3>
+  </div>
+  <div class="card-container">
+    <a class="card meal-card" routerLink="/meal">
+      <h5 *ngIf="loggedInUser$ | async as user;else other_content">Maaltijden</h5>
+      <ng-template #other_content>
+        <h5>Inloggen</h5>
+      </ng-template>
+    </a>
+    <a class="card" routerLink="/about-us">
+      <h5>Over ons</h5>
+    </a>
+  </div>
+</div>

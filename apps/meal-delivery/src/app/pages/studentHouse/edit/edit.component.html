@@ -1,0 +1,84 @@
+<div>
+  <h3>{{ studentHouse?.streetAndNmr ? 'Bewerken van ' + studentHouse?.streetAndNmr : 'Nieuwe studentenhuis toevoegen' }}
+  </h3>
+</div>
+<div class="max-width77 mb240">
+  <!-- Edit form voor studentHouse model -->
+  <form #studentHouseEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <div class="col-5">
+        <!-- streetandnmr -->
+        <div class="form-group">
+          <label for="streetandnmr">Straat en huisnummer</label>
+          <div *ngIf="studentHouse">
+            <input type="text" id="streetandnmr" name="streetandnmr" class="form-control"
+              [(ngModel)]="studentHouse!.streetAndNmr" #streetAndNmr="ngModel" minlength="3" required [ngClass]="{
+                        'is-invalid': streetAndNmr.invalid && streetAndNmr.touched
+                    }" />
+            <div *ngIf="streetAndNmr.invalid && streetAndNmr.touched" class="invalid-feedback">
+              <div *ngIf="streetAndNmr.errors!['required']">
+                Straat en huisnummer is verplicht
+              </div>
+              <div *ngIf="streetAndNmr.errors!['minlength']">
+                De straat en huisnummer moet 3 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!-- city -->
+        <div class="form-group">
+          <label for="city">Stad</label>
+          <div *ngIf="studentHouse">
+            <input type="text" id="city" name="city" class="form-control" [(ngModel)]="studentHouse!.city"
+              #city="ngModel" minlength="3" required [ngClass]="{
+                                'is-invalid': city.invalid && city.touched
+                            }" />
+            <div *ngIf="city.invalid && city.touched" class="invalid-feedback">
+              <div *ngIf="city.errors!['required']">
+                Stad is verplicht
+              </div>
+              <div *ngIf="city.errors!['minlength']">
+                Stad moet 3 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!-- postcode -->
+        <div class="form-group">
+          <label for="postcode">Postcode</label>
+          <div *ngIf="studentHouse">
+            <input type="text" id="postcode" name="postcode" class="form-control" [(ngModel)]="studentHouse!.postcode"
+              #postcode="ngModel" minlength="3" required [ngClass]="{
+                        'is-invalid': postcode.invalid && postcode.touched
+                    }" />
+            <div *ngIf="postcode.invalid && postcode.touched" class="invalid-feedback">
+              <div *ngIf="postcode.errors!['required']">
+                Postcode is verplicht
+              </div>
+              <div *ngIf="postcode.errors!['minlength']">
+                Postcode moet 6 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"><br>
+        <div class="col-8">
+          <pre>{{ studentHouse | json }}</pre>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <!-- Submit en Cancel buttons -->
+    <div class="row minHe100">
+      <div class="col">
+        <button type="submit" class="btn btn-primary mx-2" [disabled]="!studentHouseEditForm.valid">
+          {{ componentExists && studentHouse ? 'Studentenhuis bewerken' : 'Studentenhuis toevoegen' }}
+        </button>
+        <button type="button" class="btn btn-warning mx-2" routerLink="/studentHouse">Annuleren</button>
+      </div>
+    </div>
+  </form>
+</div>

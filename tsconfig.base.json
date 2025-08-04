@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": false,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2020", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@md/data": ["libs/data/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

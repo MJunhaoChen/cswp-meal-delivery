@@ -1,0 +1,30 @@
+.profile-pic {
+  width: 90px;
+  margin-right: -15px;
+}
+
+.pfp {
+  margin-top: 50px;
+  margin-left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(130, 130, 169, 0.9514356084230567) 0%,
+    rgba(199, 81, 66, 0.9562255243894433) 50%,
+    rgba(130, 130, 169, 0.9562255243894433) 100%
+  ) !important;
+  padding: 1.9vw 5.2vw;
+}
+
+ul {
+  color: #fff;
+}
+
+.erd {
+  max-width: 750px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.minHe50 {
+  min-height: 50vw;
+}

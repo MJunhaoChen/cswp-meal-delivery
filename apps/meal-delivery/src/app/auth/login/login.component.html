@@ -1,0 +1,61 @@
+<div class="row container move8down">
+  <p class="h3"> Log in </p>
+  <div class="cardBorder text-white text-opacity-75 text">
+    <form #loginForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="container move30down">
+        <div class="row row-cols-2">
+          <div class="col">
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="text" id="username" name="username" class="form-control" [(ngModel)]="formData.username"
+                  #username="ngModel" minlength="3" required [ngClass]="{
+                  'is-invalid': username.invalid && username.touched
+              }" />
+                <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+                  <div *ngIf="username.errors!['required']">
+                    Gebruikersnaam is verplicht
+                  </div>
+                  <div *ngIf="username.errors!['minlength']">
+                    Gebruikersnaam moet minimaal 3 karakters hebben.
+                  </div>
+                </div>
+                <label class="form-label" for="username">Gebruikersnaam</label>
+              </div>
+            </div>
+          </div>
+          <div class="col"></div>
+          <div class="col">
+            <div class="d-flex flex-row align-items-center mb-2">
+              <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="password" id="password" name="password" class="form-control"
+                  [(ngModel)]="formData.password" #password="ngModel" minlength="3" required [ngClass]="{
+                  'is-invalid': password.invalid && password.touched
+              }" />
+                <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+                  <div *ngIf="password.errors!['required']">
+                    Wachtwoord is verplicht
+                  </div>
+                  <div *ngIf="password.errors!['minlength']">
+                    Wachtwoord moet minimaal 3 karakters hebben.
+                  </div>
+                </div>
+                <label class="form-label" for="password">Wachtwoord</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class=" mx-4 mb-3 mb-lg-4">
+          <button type="submit" class="btn btn-primary btn-medium minWidthButton" [disabled]="!loginForm.valid">
+            Inloggen
+          </button>
+          <label class="move20right">
+            <a routerLink="/register">Nog geen account? Meld je aan.</a>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

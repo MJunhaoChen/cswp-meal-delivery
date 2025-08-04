@@ -1,0 +1,54 @@
+<div class="row" *ngIf="meal$ | async as meal">
+  <div class="col-sm-10 col-md-12 col-lg-9">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="card-title">Maaltijd {{meal?.name}}</h3>
+      <button type="button" class="btn btn-primary move5down" [routerLink]="isStudent ? '/meal' : 'edit'">
+        {{ isStudent ? 'Maaltijden' : 'Maaltijd bewerken' }}
+      </button>
+    </div>
+    <ul>
+      <li>Eigenaar: {{meal?.owner[0]?.username}}</li>
+      <li>Prijs: € {{toDecimal(meal?.price)}}</li>
+      <ng-container *ngIf="meal as m; else notReserved">
+        <li>Ophaaltijd: {{m.deliveryTime | date:'HH:mm'}}</li>
+        <li>Ophaaldatum: {{m.deliveryDate | date: 'dd-MM-YYYY'}}</li>
+      </ng-container>
+      <ng-template #notReserved>
+        <li>Ophaaltijd: maaltijd nog niet gereserveerd.</li>
+        <li>Ophaaldatum: maaltijd nog niet gereserveerd.</li>
+      </ng-template>
+    </ul>
+
+    <h4 class="card-title">Producten:</h4>
+    <ng-container *ngIf="meal">
+      <div *ngIf="meal.products.length <= 0" class="row">
+        <p>Er zijn geen producten aan deze maaltijd toegevoegd.</p>
+      </div>
+      <div class="row">
+        <div class="col">
+          <br>
+          <div class="mb240">
+            <div class="row">
+              <div class="col-sm-12 col-md-auto col-lg-3 mx-2"
+                *ngFor="let product of meal.products; trackBy: trackByFn">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <ul class="no-bullets">
+                      <li>{{ product?.allergies.length > 0 ? 'Allergieën: ' +
+                        product.allergies.join(', ') : 'Product bevat geen allergieën.' }}</li>
+                      <li>{{ product?.containsAlcohol ? 'Product bevat alcohol.' : 'Product bevat geen alcohol.' }}
+                      </li>
+                      <li><a [routerLink]="['/product', product.id]" routerLinkActive="active"
+                          ariaCurrentWhenActive="page">Klik hier voor meer details.</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

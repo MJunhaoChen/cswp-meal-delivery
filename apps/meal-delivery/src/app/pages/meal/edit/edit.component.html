@@ -1,0 +1,162 @@
+<div *ngIf="componentExists && meal">
+  <h3>Bewerken van {{ meal!.name }}</h3>
+</div>
+<div *ngIf="!componentExists">
+  <h3>Nieuwe maaltijd toevoegen</h3>
+</div>
+<div class="max-width77">
+  <!-- Edit form voor meal model -->
+  <form #mealEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <!-- name -->
+      <div class="col-5">
+        <div class="form-group">
+          <label for="name">Naam</label>
+          <div *ngIf="meal">
+            <input type="text" id="name" name="name" class="form-control" [(ngModel)]="meal!.name" #name="ngModel"
+              minlength="3" required [ngClass]="{
+                        'is-invalid': name.invalid && name.touched
+                    }" />
+            <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+              <div *ngIf="name.errors!['required']">
+                Naam is verplicht
+              </div>
+              <div *ngIf="name.errors!['minlength']">
+                De naam moet 3 karakters lang zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- price -->
+      <div class="col-5">
+        <div class="form-group">
+          <label for="price">Prijs</label>
+          <div *ngIf="meal">
+            <input type="number" id="price" pattern="^\d*(\.\d{0,2})?$" name="price" class="form-control"
+              [(ngModel)]="meal!.price" #price="ngModel" required
+              [ngClass]="{'is-invalid': price.invalid && price.touched}" />
+            <div *ngIf="price.invalid && price.touched" class="invalid-feedback">
+              <div *ngIf="price.errors!['required']">
+                Prijs is verplicht
+              </div>
+              <div *ngIf="price.errors!['pattern']">
+                Maximaal 2 decimalen
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-5">
+        <!-- deliverytime -->
+        <div class="row-5">
+          <div class="form-group">
+            <label for="deliverytime">Ophaaltijd</label>
+            <div *ngIf="meal">
+              <input type="time" id="deliverytime" name="deliverytime" class="form-control"
+                [ngModel]="meal!.deliveryTime | date:'shortTime'" #deliveryTime="ngModel"
+                (ngModelChange)="meal!.deliveryTime = convertToDateTime($event)" required
+                [ngClass]="{'is-invalid': deliveryTime.invalid && deliveryTime.touched}" />
+              <div *ngIf="deliveryTime.invalid && deliveryTime.touched" class="invalid-feedback">
+                <div *ngIf="deliveryTime.errors!['required']">
+                  Ophaaltijd is verplicht
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- deliverydate -->
+        <div class="row-5">
+          <div class="form-group">
+            <label for="deliverydate">Ophaaldatum</label>
+            <div *ngIf="meal">
+              <input type="date" id="deliverydate" name="deliverydate" class="form-control"
+                [ngModel]="meal!.deliveryDate | date:'yyyy-MM-dd'" (ngModelChange)="meal!.deliveryDate = $event" />
+            </div>
+          </div>
+        </div><br>
+        <!-- studentHouse -->
+        <div class="row-5">
+          <div class="form-group">
+            <label for="studentHouse">Studentenhuis</label>
+            <div *ngIf="meal">
+              <select class="form-select move10left" id="studentHouse" name="studentHouse"
+                [(ngModel)]="meal.studentHouseId" #studentHouseId="ngModel" required>
+                <option *ngFor="let studentHouse of studentHouses" [value]="studentHouse.id">
+                  {{studentHouse.streetAndNmr}}
+                </option>
+              </select>
+              <div *ngIf="studentHouseId.invalid && studentHouseId.touched" class="invalid-feedback">
+                <div *ngIf="studentHouseId.errors!['required']">
+                  Studentenhuis is verplicht
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Submit en Cancel buttons -->
+        <button id="save-meal-btn" type="submit" class="btn btn-primary mx-2 my-4" [disabled]="!mealEditForm.valid">
+          {{ componentExists && meal ? 'Maaltijd bewerken' : 'Maaltijd toevoegen' }}
+        </button>
+        <button type="button" class="btn btn-warning mx-2" routerLink="/meal">Annuleren</button>
+      </div>
+      <div class="col-5" [ngClass]="{'prejson': componentExists}">
+        <pre>{{ meal | json }}</pre>
+      </div>
+    </div><br>
+  </form>
+</div>
+
+<div class="row container list">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="card-title">Producten lijst</h3>
+    <div>
+      <button type="button" class="btn btn-primary mt-5" [routerLink]="['/product', 'new']">Voeg nieuw product
+        toe</button>
+    </div>
+  </div>
+  <div class="row container">
+    <div class="col">
+      <br>
+      <div class="mb240">
+        <div class="row">
+          <div class="col-sm-12 col-md-auto col-lg-4" *ngFor="let product of products$ | async; let i = index">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <ul class="no-bullets">
+                  <li *ngIf="product?.allergies.length > 0; else noAllergies">
+                    Allergieën: {{ product?.allergies.join(', ') }}</li>
+                  <ng-template #noAllergies>
+                    <li>Product bevat geen allergieën.</li>
+                  </ng-template>
+                  <li>Product bevat{{product?.containsAlcohol ? '' : ' geen'}} alcohol.</li>
+                  <li><a [routerLink]="['/product', product.id]" routerLinkActive="active"
+                      ariaCurrentWhenActive="page">Klik hier voor meer details.</a></li>
+                </ul>
+                <div class="alignEnd">
+                  <a class="add" title="Product toevoegen" data-toggle="tooltip"
+                    (click)="addProductToMeal(product.id!, meal.id!)" routerLinkActive="active">
+                    <i class="material-icons">add</i>
+                  </a>
+                  <a class="delete" title="Product uit lijst halen" data-toggle="tooltip"
+                    (click)="removeProductFromMeal(product.id!, meal.id!)" routerLinkActive="active">
+                    <i class="material-icons">cancel</i>
+                  </a>
+                  <a class="edit" title="Bewerken" data-toggle="tooltip" [routerLink]="['/product', product.id, 'edit']"
+                    routerLinkActive="active"><i class="material-icons">&#xE254;</i></a>
+                  <a class="delete" title="Verwijderen" data-toggle="tooltip" (click)="deleteProduct(product.id!)"
+                    routerLinkActive="active"><i class="material-icons">&#xE872;</i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

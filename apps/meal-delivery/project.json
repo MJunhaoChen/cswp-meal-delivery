@@ -1,0 +1,94 @@
+{
+  "name": "meal-delivery",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:application": {
+      "strict": true
+    }
+  },
+  "sourceRoot": "apps/meal-delivery/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/meal-delivery",
+        "index": "apps/meal-delivery/src/index.html",
+        "main": "apps/meal-delivery/src/main.ts",
+        "polyfills": "apps/meal-delivery/src/polyfills.ts",
+        "tsConfig": "apps/meal-delivery/tsconfig.app.json",
+        "assets": [
+          "apps/meal-delivery/src/favicon.ico",
+          "apps/meal-delivery/src/assets",
+          "apps/meal-delivery/src/_redirects"
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "apps/meal-delivery/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/meal-delivery/src/environments/environment.ts",
+              "with": "apps/meal-delivery/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "meal-delivery:build:production"
+        },
+        "development": {
+          "browserTarget": "meal-delivery:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/meal-delivery/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "meal-delivery:build"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/meal-delivery/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

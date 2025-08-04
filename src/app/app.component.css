@@ -1,8 +1,0 @@
-.background {
-  display: flex;
-  min-height: 640px;
-  margin-top: 60px;
-  background-image: url(/assets/img/dashboardBg.webp);
-  background-size: 1540px;
-  flex-direction: column;
-}

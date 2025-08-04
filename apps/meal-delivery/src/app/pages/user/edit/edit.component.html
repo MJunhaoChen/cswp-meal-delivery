@@ -1,0 +1,94 @@
+<div>
+  <h3>{{ componentExists && user ? 'Bewerken van ' + user.username : 'Nieuwe gebruiker toevoegen' }}</h3>
+</div>
+<div class="max-width77">
+  <!-- Edit form voor user model -->
+  <form #userEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <div class="col-5">
+        <div class="row-5">
+          <!-- username -->
+          <div class="form-group">
+            <label for="username">Gebruikersnaam</label>
+            <div *ngIf="user?.username">
+              <input type="text" id="username" name="username" class="form-control" [(ngModel)]="user!.username"
+                #username="ngModel" minlength="3" required [ngClass]="{
+                          'is-invalid': username.invalid && username.touched
+                      }" />
+              <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+                <div *ngIf="username.errors!['required']">
+                  Gebruikersnaam is verplicht
+                </div>
+                <div *ngIf="username.errors!['minlength']">
+                  De gebruikersnaam moet 3 karakters lang zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!-- emailaddress -->
+        <div class="row-5">
+          <div class="form-group">
+            <label for="emailaddress">E-mailadres</label>
+            <div *ngIf="user?.emailAddress">
+              <input type="text" id="emailaddress" name="emailaddress" class="form-control"
+                [(ngModel)]="user!.emailAddress" #emailaddress="ngModel" minlength="3" required [ngClass]="{
+                        'is-invalid': emailaddress.invalid && emailaddress.touched
+                    }" />
+              <div *ngIf="emailaddress.invalid && emailaddress.touched" class="invalid-feedback">
+                <div *ngIf="emailaddress.errors!['required']">
+                  E-mailadres is verplicht
+                </div>
+                <div *ngIf="emailaddress.errors!['minlength']">
+                  De E-mailadres moet 3 karakters lang zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <!-- isgraduated -->
+        <div class="row-5">
+          <div class="form-check">
+            <div *ngIf="user?.emailAddress">
+              <input class="form-check-input" type="checkbox" id="isgraduated" name="isgraduated"
+                [(ngModel)]="user!.isGraduated" #isgraduated="ngModel" />
+              <label for="isgraduated">Is afgestudeerd</label>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- role -->
+        <div class="row-5">
+          <div class="form-group">
+            <label for="role">Rol</label>
+            <div *ngIf="user?.role">
+              <select class="form-select move10left" id="role" name="role" [(ngModel)]="user!.role" #role="ngModel"
+                required>
+                <option value="admin">Admin</option>
+                <option value="student">Student</option>
+                <option value="owner">Owner</option>
+              </select>
+              <div *ngIf="role.invalid && role.touched" class="invalid-feedback">
+                <div *ngIf="role.errors!['required']">
+                  Rol is verplicht
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Submit en Cancel buttons -->
+        <div class="row move34down">
+          <div class="col">
+            <button type="submit" class="btn btn-primary mx-2" [disabled]="!userEditForm.valid">
+              {{ componentExists && user ? 'Gebruiker bewerken' : 'Gebruiker toevoegen' }}
+            </button>
+            <button type="button" class="btn btn-warning mx-2" routerLink="/user">Annuleren</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 prejson">
+        <pre>{{user | json}}</pre>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<div *ngIf="componentExists && product">
+  <h3>Bewerken van {{ product.name }}</h3>
+</div>
+<div *ngIf="!componentExists">
+  <h3>Nieuwe product toevoegen</h3>
+</div>
+<div class="max-width77 mb240">
+  <!-- Edit form voor product model -->
+  <form #productEditForm="ngForm" name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <!-- allergies -->
+      <div class="col-5"><br>
+        <label class="aura30 move10left">Allergieën</label>
+        <button type="button" class="btn btn-primary move10left" (click)="addAllergy()">+ Voeg allergieën
+          toe</button><br>
+        <label class="move10left">(Voor geen waarde kiest u de lege optie.)</label>
+        <div *ngIf="product">
+          <div *ngFor="let allergy of product!.allergies!; let i = index">
+            <div class="form-group">
+              <label for="allergies">{{allergy.charAt(0).toUpperCase() +
+                allergy.slice(1)}}</label>
+              <select class="form-select move10left" id="allergies" name="allergies" class="form-control"
+                [(ngModel)]="product!.allergies[i]">
+                <option label=""></option>
+                <option *ngFor="let allergyType of allergyTypes" [value]="allergyType">
+                  {{allergyType}}</option>
+              </select>
+            </div>
+          </div>
+        </div><br>
+        <!-- Submit en Cancel buttons -->
+        <div class="col">
+          <div class="row-5">
+            <button type="submit" class="btn btn-primary mx-2" [disabled]="!productEditForm.valid">
+              {{ componentExists && product ? 'Product bewerken' : 'Product toevoegen' }}
+            </button>
+            <button type="button" class="btn btn-warning mx-2" routerLink="/product">Annuleren</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <!-- name -->
+        <div class="row-5">
+          <div class="form-group">
+            <div *ngIf="product">
+              <label for="name">Naam</label>
+              <input type="text" id="name" name="name" class="form-control" [(ngModel)]="product!.name" #name="ngModel"
+                minlength="3" required [ngClass]="{
+                          'is-invalid': name.invalid && name.touched
+                      }" />
+              <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+                <div *ngIf="name.errors!['required']">
+                  Naam is verplicht
+                </div>
+                <div *ngIf="name.errors!['minlength']">
+                  De naam moet 3 karakters lang zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <div class="row-5">
+          <pre>{{ product | json }}</pre>
+        </div>
+        <!-- containsAlcohol -->
+        <div class="row-5">
+          <div *ngIf="product">
+            <div class="form-check">
+              <label for="containsalcohol">Bevat alcohol</label>
+              <input class="form-check-input" type="checkbox" id="containsalcohol" name="containsalcohol"
+                [(ngModel)]="product!.containsAlcohol" #containsalcohol="ngModel" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
