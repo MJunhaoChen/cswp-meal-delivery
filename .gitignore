@@ -12,6 +12,7 @@ npm-debug.log
 yarn-error.log
 
 # IDEs and editors
+.env
 .idea/
 .project
 .classpath
@@ -40,3 +41,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+.angular
+
+.nx/cache
+.nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
